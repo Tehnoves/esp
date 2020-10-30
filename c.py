@@ -28,14 +28,14 @@ def encoder () :
 			#start = time.ticks_ms()
 			new = p14.value()
 			print("new: ",new)
-		if p2.value() != new2:
+		if p13.value() != new2:
 			
-			print("old2: ",p2.value())
-			if  p2.value() == 0:
+			print("old2: ",p13.value())
+			if  p13.value() == 0:
 				time.sleep_ms(2)
 				start2 = time.ticks_ms()
 				fist2 = 1
-			if p2.value() == 1 and fist2 == 1 :   
+			if p13.value() == 1 and fist2 == 1 :   
 				fist2 = 0
 				delta2 = time.ticks_diff(time.ticks_ms(), start2)
 				period = time.ticks_diff(time.ticks_ms(), start)
@@ -50,7 +50,7 @@ def encoder () :
 				print("++++++++++++++++++++")
 				end = 1
 			#start = time.ticks_ms()
-			new2 = p2.value()
+			new2 = p13.value()
 			print("new2: ",new2)
 
 
@@ -63,14 +63,14 @@ fist = 0
 fist2 = 0
 start = time.ticks_ms()
 start2 = time.ticks_ms()
-p2 = Pin(2, Pin.IN, Pin.PULL_UP)
+p13 = Pin(13, Pin.IN, Pin.PULL_UP)
 p14 = Pin(14, Pin.IN, Pin.PULL_UP)
 
 while True:
     if end == 1:
         end = 0
     p14.irq(handler= encoder(), trigger = Pin.IRQ_FALLING )
-    p2.irq(handler= encoder(), trigger = Pin.IRQ_FALLING )
+    p13.irq(handler= encoder(), trigger = Pin.IRQ_FALLING )
 	
 
     
