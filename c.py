@@ -12,21 +12,21 @@ import time
 def encoder () :
 	global new, end, start,fist,delta, new2,start2, fist2, delta2, i
 	while end == 0 :
-		if p0.value() != new:
+		if p14.value() != new:
 			
-			print("old: ",p0.value())
-			if  p0.value() == 0:
+			print("old: ",p14.value())
+			if  p14.value() == 0:
 				time.sleep_ms(2)
 				print("---------------------")
 				
 				start = time.ticks_ms()
 				fist = 1
-			if p0.value() == 1 and fist == 1 :   
+			if p14.value() == 1 and fist == 1 :   
 				fist = 0
 				delta = time.ticks_diff(time.ticks_ms(), start)
 				print("delta = ",delta)
 			#start = time.ticks_ms()
-			new = p0.value()
+			new = p14.value()
 			print("new: ",new)
 		if p2.value() != new2:
 			
@@ -64,12 +64,12 @@ fist2 = 0
 start = time.ticks_ms()
 start2 = time.ticks_ms()
 p2 = Pin(2, Pin.IN, Pin.PULL_UP)
-p0 = Pin(0, Pin.IN, Pin.PULL_UP)
+p14 = Pin(14, Pin.IN, Pin.PULL_UP)
 
 while True:
     if end == 1:
         end = 0
-    p0.irq(handler= encoder(), trigger = Pin.IRQ_FALLING )
+    p14.irq(handler= encoder(), trigger = Pin.IRQ_FALLING )
     p2.irq(handler= encoder(), trigger = Pin.IRQ_FALLING )
 	
 
