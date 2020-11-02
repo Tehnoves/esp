@@ -1,7 +1,8 @@
 #----------------------------------------------
 # метеостанция на esp8266 и часы с энкодером
 # 02.11.20  слава 07.11.17
-# V 1.0
+# V 1.0 заработал bmp085 САМ
+# V 1.1 пробуем экран 
 #
 #----------------------------------------------
 
@@ -202,6 +203,7 @@ bmp = BMP085(i2c)
 bmp.oversample = 2
 bmp.sealevel = 101325
 while True:
+	print(i2c.scan()  )
 	temp = bmp.temperature
 	p = bmp.pressure
 	altitude = bmp.altitude
